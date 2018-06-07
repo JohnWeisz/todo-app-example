@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 import { THEME_COLOR, MENU_COL_WIDTH } from "./constants";
-import { store } from "./store";
 import { TodoMenu } from "./todo-menu.jsx";
 import { TodoList } from "./areas/list/todo-list.jsx";
 import { Settings } from "./areas/settings/settings.jsx";

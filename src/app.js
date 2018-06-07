@@ -1,9 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { mainReducer } from "./app/todo-main-reducers";
 import { createTodoListReducer } from "./app/areas/list/todo-list-reducer";
+import { createTodoListChangeMiddleware } from "./app/areas/list/todo-list-middleware";
 import { TodoMain } from "./app/todo-main.jsx";
 
 export class TodoApp
@@ -14,18 +15,34 @@ export class TodoApp
      */
     constructor(todoListProvider, settingsProvider)
     {
-        this._store = createStore(combineReducers({
-            main: mainReducer,
-            todoList: createTodoListReducer(todoListProvider ? { items: todoListProvider.getItems() } : undefined)
-        }));
+        /** @type {Function} */
+        let todoListReducerInitialState;
+
+        /** @type {Function[]} */
+        let middleWares = [];
 
         if (todoListProvider)
         {
-            window.setInterval(() =>
+            let items = todoListProvider.getItems();
+
+            todoListReducerInitialState = {
+                items: items,
+                idCounter: Array.from(items.values()).reduce((a, b) => Math.max(a, b), 0) + 1 // Get greatest ID from items.
+            };
+
+            middleWares.push(createTodoListChangeMiddleware(() =>
             {
                 todoListProvider.setItems(this._store.getState().todoList.items);
-            }, 2000);
+            }));
         }
+
+        this._store = createStore(
+            combineReducers({
+                main: mainReducer,
+                todoList: createTodoListReducer(todoListReducerInitialState)
+            }),
+            applyMiddleware.apply(applyMiddleware, middleWares)
+        );
     }
 
     /**

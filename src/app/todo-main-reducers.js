@@ -30,5 +30,23 @@ export function mainReducer(state, action)
 
 export function createMainReducer(initialState = todoMainInitialState)
 {
-    return mainReducer;
+    return (state = initialState, action) =>
+    {
+        switch (action.type)
+        {
+            case "MAIN_CHANGE_ACTIVE_VIEW":
+                return {
+                    ...state,
+                    activeView: action.payload.activeView
+                };
+
+            case "MAIN_CHANGE_SORT_MODE":
+                return {
+                    ...state,
+                    sortMode: action.payload.sortMode
+                };
+        }
+
+        return state;
+    }
 }

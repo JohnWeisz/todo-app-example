@@ -15,7 +15,7 @@ A small Todo-list example web-app, built with ESNext, React, Redux, and Material
 To use this app, you need NodeJS and npm on your machine.
 
  1. Clone this repository to your local folder
- 2. Install dependencies by running `npm install -d` in the root folder of this project (i.e. where `package.json` is located)
+ 2. Install dependencies by running `npm install -D` in the root folder of this project (i.e. where `package.json` is located)
  3. Run `npm start` to open the app in your browser
 
 ## App Architecture

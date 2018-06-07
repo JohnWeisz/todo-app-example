@@ -1,13 +1,13 @@
 {
-  "name": "pimped-todo-app",
+  "name": "todo-app-example",
   "version": "0.0.1",
-  "description": "This is how you make a \"Todo\" app.",
+  "description": "A small Todo-list example web-app, built with ESNext, React, Redux, and Material-UI next.",
   "main": "src/app.bundle.js",
   "scripts": {
     "start": "webpack-dev-server --open --config ./webpack.config.js --host localhost"
   },
   "author": "John Weisz",
-  "license": "WTFPL",
+  "license": "MIT",
   "babel": {
     "presets": [
       "env",

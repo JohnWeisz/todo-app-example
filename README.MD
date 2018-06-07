@@ -4,6 +4,12 @@ A small Todo-list example web-app, built with ESNext, React, Redux, and Material
 
 ![Screenshot](/dist/app-screenshot.png "Screenshot")
 
+## Features
+
+ - Add, change, remove items from your Todo list
+ - Set due date, monitor with live countdown
+ - Mark items as high priority
+
 ## Installation & Building
 
 To use this app, you need NodeJS and npm on your machine.

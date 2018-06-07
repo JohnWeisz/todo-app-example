@@ -1,4 +1,4 @@
-# Pimped Todo List
+# Todo-App Example
 
 A small Todo-list example web-app, built with ESNext, React, Redux, and Material-UI next. Built as a part of my application for a contract job at [Flexhire](https://flexhire.com), a sleek platform for pre-screened freelance developers and designers.
 

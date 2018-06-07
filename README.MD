@@ -2,6 +2,8 @@
 
 A small Todo-list example web-app, built with ESNext, React, Redux, and Material-UI next. Built as a part of my application for a contract job at [Flexhire](https://flexhire.com), a sleek platform for pre-screened freelance developers and designers.
 
+![Screenshot](/dist/app-screenshot.png "Screenshot")
+
 ## Installation & Building
 
 To use this app, you need NodeJS and npm on your machine.

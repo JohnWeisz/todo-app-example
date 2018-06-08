@@ -37,3 +37,29 @@ webpack
 ## License
 
 Licensed under the MIT license.
+
+-----
+
+## *Personal Notes*
+
+*This app is based a considerably simpler tech stack than what I usually use, and may showcase some trivial mistakes in the redux-system architecture department.*
+
+*While this example app uses ES6, Babel, and Redux, I usually roll with TypeScript and a custom, multi-store, mutable-state, and typed flux system, based on decorators and type metadata reflection. This flux system is extremely performance-oriented, and is designed especially for the case where thousands of components are rendered, and actions are dispatched at very high frequency (several actions per second at times).*
+
+*Although this custom flux system is not public at this time, it looks something like this from the store side:*
+
+```ts
+export class TodoListStore extends Store<TodoListState>
+{
+    @actionHandler
+    private handleTodoItemCreate(action: TodoListItemCreateAction)
+    {
+        this.state.items.set(...);
+        this.emitChange();
+    }
+    
+    ...
+}
+```
+
+*It also comes with a `connect` HOC similar to Redux (except more performance-oriented), and a context-based dependency-injection system. The most notable user of this flux framework (and essentially the _only_ serious user) is [AudioNodes](https://audionodes.com/), a web- and Electron-based modular digital audio workstation.*

@@ -62,4 +62,6 @@ export class TodoListStore extends Store<TodoListState>
 }
 ```
 
-*It also comes with a `connect` HOC similar to Redux (except more performance-oriented), and a context-based dependency-injection system. The most notable user of this flux framework (and essentially the _only_ serious user) is [AudioNodes](https://audionodes.com/), a web- and Electron-based modular digital audio workstation.*
+*It also comes with a `connect` HOC similar to Redux (except more performance-oriented), and a context-based dependency-injection system. The framework also includes simple testing tools for `@actionHandler` methods (based on a `state+action=newState` principle, which is very similar to how Redux reducers are tested).*
+
+*The most notable user of this flux framework (and essentially the _only_ serious user) is [AudioNodes](https://audionodes.com/), a web- and Electron-based modular digital audio workstation.*

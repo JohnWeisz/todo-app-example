@@ -42,7 +42,7 @@ Licensed under the MIT license.
 
 ## *Personal Notes*
 
-*This app is based a considerably simpler tech stack than what I usually use, and may showcase some trivial mistakes in the redux-system architecture department.*
+*This app is based a slightly different (and considerably simpler) stack than what I usually use, and may showcase some trivial mistakes in the redux-system architecture department.*
 
 *While this example app uses ES6, Babel, and Redux, I usually roll with TypeScript and a custom, multi-store, mutable-state, and typed flux system, based on decorators and type metadata reflection. This flux system is extremely performance-oriented, and is designed especially for the case where thousands of components are rendered, and actions are dispatched at very high frequency (several actions per second at times).*
 

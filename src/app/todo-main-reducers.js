@@ -1,35 +1,25 @@
 import { mapConcatImmutable, mapSetImmutable, mapDeleteImmutable } from "../utils/map-immutable";
 import { todoMainInitialState } from "./todo-main-state";
 
-/**
- * @param {todoMainInitialState} state
- * @param {{ type: string, payload: any }} action
- * @return {StoreState}
- */
-export function mainReducer(state, action)
+export function createMainReducer(initialState)
 {
-    state = state || todoMainInitialState;
-
-    switch (action.type)
+    if (initialState)
     {
-        case "MAIN_CHANGE_ACTIVE_VIEW":
-            return {
-                ...state,
-                activeView: action.payload.activeView
-            };
-
-        case "MAIN_CHANGE_SORT_MODE":
-            return {
-                ...state,
-                sortMode: action.payload.sortMode
-            };
+        initialState = {
+            ...todoMainInitialState,
+            ...initialState
+        };
+    }
+    else
+    {
+        initialState = todoMainInitialState;
     }
 
-    return state;
-}
-
-export function createMainReducer(initialState = todoMainInitialState)
-{
+    /**
+     * @param {todoMainInitialState} state
+     * @param {{ type: string, payload: any }} action
+     * @return {StoreState}
+     */
     return (state = initialState, action) =>
     {
         switch (action.type)

@@ -2,7 +2,8 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import { mainReducer } from "./app/todo-main-reducers";
+import { createMainReducer } from "./app/todo-main-reducers";
+import { createSortModeChangeMiddleware } from "./app/todo-main-middleware";
 import { createTodoListReducer } from "./app/areas/list/todo-list-reducer";
 import { createTodoListChangeMiddleware } from "./app/areas/list/todo-list-middleware";
 import { TodoMain } from "./app/todo-main.jsx";
@@ -15,10 +16,8 @@ export class TodoApp
      */
     constructor(todoListProvider, settingsProvider)
     {
-        /** @type {Function} */
         let todoListReducerInitialState;
-
-        /** @type {Function[]} */
+        let mainReducerInitialState;
         let middleWares = [];
 
         if (todoListProvider)
@@ -36,9 +35,21 @@ export class TodoApp
             }));
         }
 
+        if (settingsProvider)
+        {
+            mainReducerInitialState = {
+                sortMode: settingsProvider.get("sort-mode")
+            };
+
+            middleWares.push(createSortModeChangeMiddleware(() =>
+            {
+                settingsProvider.set("sort-mode", this._store.getState().main.sortMode);
+            }));
+        }
+
         this._store = createStore(
             combineReducers({
-                main: mainReducer,
+                main: createMainReducer(mainReducerInitialState),
                 todoList: createTodoListReducer(todoListReducerInitialState)
             }),
             applyMiddleware.apply(applyMiddleware, middleWares)

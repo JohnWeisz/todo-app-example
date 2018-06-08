@@ -1,42 +1,16 @@
 import { TodoApp } from "./app";
+import { mapToJson } from "./utils/map-to-json";
+import { jsonToMap } from "./utils/json-to-map";
 
 export let container = document.getElementById("app-container");
 export let todoApp = new TodoApp(
     {
-        getItems: () =>
-        {
-            let todoItemsJson = localStorage.getItem("todo.items");
-
-            if (todoItemsJson)
-            {
-                let todoItems = JSON.parse(todoItemsJson);
-
-                if (todoItems && todoItems instanceof Array)
-                {
-                    let todoItemsMap = new Map();
-
-                    for (let item of todoItems)
-                    {
-                        todoItemsMap.set(item.id, item);
-                    }
-
-                    return todoItemsMap;
-                }
-            }
-
-            return new Map();
-        },
-        setItems: (items) =>
-        {
-            if (items)
-            {
-                localStorage.setItem("todo.items", JSON.stringify(Array.from(items.values())));
-            }
-            else
-            {
-                localStorage.setItem("todo.items", JSON.stringify([]));
-            }
-        }
+        getItems: () => jsonToMap(localStorage.getItem("todo.items"), (item) => item.id),
+        setItems: (items) => localStorage.setItem("todo.items", mapToJson(items))
+    },
+    {
+        get: (key) => localStorage.getItem("settings." + key),
+        set: (key, value) => localStorage.setItem("settings." + key, value)
     }
 );
 

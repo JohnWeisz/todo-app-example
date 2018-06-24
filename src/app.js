@@ -26,7 +26,7 @@ export class TodoApp
 
             todoListReducerInitialState = {
                 items: items,
-                idCounter: Array.from(items.values()).reduce((a, b) => Math.max(a, b), 0) + 1 // Get greatest ID from items, set idCounter to that + 1.
+                idCounter: Array.from(items.keys()).reduce((a, b) => Math.max(a, b), 0) + 1 // Get greatest ID from items, set idCounter to that + 1.
             };
 
             middleWares.push(createTodoListChangeMiddleware(() =>

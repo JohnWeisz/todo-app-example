@@ -22,13 +22,13 @@ To build this app, you need NodeJS and npm on your machine.
 
 The client app functionality is encapsulated inside the `TodoApp` class in the `app.js` file. The `TodoApp` class is responsible for rendering the app into a specified DOM-container, as well as instantiating the Redux store to manage app state.
 
-External dependencies, such as data persistence and account management, are supplied to the `TodoApp` through a simple dependency injection pattern. This example simply uses the [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) API to implement this in the `index.js` file, but it can be replaced with more robust, remote-API-based solutions. This makes it feasible to distribute the app on multiple platforms, such as web, Electron, and PhoneGap, as the external dependencies can be easily defined per platform.
+External dependencies, such as data persistence, are supplied to the `TodoApp` through a simple dependency injection pattern. This example simply uses the [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) API to implement this in the `index.js` file, but it can be replaced with more robust, remote-API-based solutions. This makes it feasible to distribute the app on multiple platforms, such as web, Electron, and PhoneGap, as the external dependencies can be easily defined per platform.
 
 The UI code is separated into a left *menu* bar and a right *content* bar, with the *content* part further separated into multiple *areas* (such as *TodoList* displaying the actual Todo items, and *Settings* displaying the available app settings).
 
 ## Build System
 
-The app is built through a simple 2-step babel+webpack config, all handled internally by webpack through the configuration. To build without starting, simply webpack it:
+The app is built through a simple 2-step babel+webpack config, all handled by webpack + plugins through the configuration. To build without starting, simply webpack it:
 
 ```
 webpack

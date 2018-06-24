@@ -21,21 +21,24 @@ export function createTodoListReducer(initialState)
         switch (action.type)
         {
             case "TODO_LIST_ADD":
+                let idOfNewItem = state.idCounter || 0;
+
                 /** @type {TodoItem} */
                 const newTodoItem = {
                     title: action.payload.title,
                     description: "",
                     deadline: (action.payload.deadline > Date.now()) ? action.payload.deadline : -1,
                     isDone: false,
-                    id: state.idCounter,
+                    id: idOfNewItem,
                     isHighPriority: action.payload.isHighPriority
                 };
 
                 return {
                     ...state,
-                    idCounter: state.idCounter + 1,
-                    items: mapSetImmutable(state.items, state.idCounter, newTodoItem),
+                    idCounter: (state.idCounter || 0) + 1,
+                    items: mapSetImmutable(state.items, idOfNewItem, newTodoItem),
                     newItemTemp: {
+                        // We've added the new item, clear the new item field.
                         title: "",
                         deadline: -1,
                         isHighPriority: false
